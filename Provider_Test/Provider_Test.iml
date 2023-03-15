@@ -10,7 +10,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/bcprov-jdk18on-172.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../숭실대/3-1/보안프로그래밍/bcprov-jdk18on-172.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

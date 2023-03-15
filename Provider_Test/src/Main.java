@@ -1,5 +1,6 @@
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
+import java.security.Provider;
 import java.security.Security;
 
 public class Main {
@@ -13,6 +14,15 @@ public class Main {
         else
         {
             System.out.println(providerName + " is installed");
+        }
+
+        System.out.println("-------------------------------------------");
+
+        Provider[] providers = Security.getProviders();
+        for(int i = 0 ; i < providers.length ; i++){
+            Provider provider = providers[i];
+            System.out.println("Provider name : " + provider.getName());
+            System.out.println("Provider info : " + provider.getInfo()+"\n");
         }
     }
 }
