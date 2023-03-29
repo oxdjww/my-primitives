@@ -4,11 +4,11 @@ import java.security.Security;
 
 import jdk.jshell.execution.Util;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
-
 public class HashTest {
 
 	public static void main(String args[]) throws Exception
 	{
+
 	    Security.addProvider(new BouncyCastleProvider());
 	    
 	    MessageDigest hash = MessageDigest.getInstance("SHA256", "BC");
@@ -26,7 +26,7 @@ public class HashTest {
 		// ä�� ����
 		// A ���: 1.1, 1.2, 2 �� ���
 		// B ���: �ܼ� �Ǽ�
-		// C ���: 3�� ����� ������ update Ȥ�� digest�Լ� ��� �̼�
+		// C �[��: 3�� ����� ������ update Ȥ�� digest�Լ� ��� �̼�
 		// D ���: ������
 		// ���� ������ ���, ���� �Ͻø� ����� ������ ������
 		
@@ -42,7 +42,7 @@ public class HashTest {
 		byte[] out1 = hash.digest();
 
 		byte[] out2 = hash.digest((Utils.toByteArray(ssu)));
-
+h
 		byte[] out3 = hash.digest((Utils.toByteArray(ex)));
 				
 		// 1.2 ��õ�ϴ� ��� (2)

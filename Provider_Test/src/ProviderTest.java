@@ -3,7 +3,7 @@ import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import java.security.Provider;
 import java.security.Security;
 
-public class Main {
+public class ProviderTest {
     public static void main(String[] args) {
         Security.addProvider(new BouncyCastleProvider());
         String providerName = "BC";
