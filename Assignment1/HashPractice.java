@@ -4,7 +4,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.Security;
 import java.util.Random;
 
-public class Main {
+public class HashPractice {
     public static void main(String[] args) throws NoSuchAlgorithmException {
         Security.addProvider(new BouncyCastleProvider());
         MessageDigest SHA1 = MessageDigest.getInstance("SHA-1");
