@@ -5,12 +5,8 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.security.Security;
 
-
-public class CipherTest {
-
-    public static void main(String args[]) throws Exception
-    {
-
+public class DoFinal {
+    public static void main(String[] args)throws Exception {
         Security.addProvider(new BouncyCastleProvider());
 
         byte[]        input = new byte[] {
@@ -42,10 +38,9 @@ public class CipherTest {
         byte[] output = new byte[cipher.getOutputSize(input.length)];
         int processLen;
 
-        processLen = cipher.update(input, 0, input.length, output, 0);
 
-        processLen = cipher.doFinal(output, processLen);
-
+        //doFinal만으로 암호화
+        processLen = cipher.doFinal(input,0,input.length,output,0);
 
         System.out.println("output : " + Utils.toHexString(output));
 
@@ -55,12 +50,13 @@ public class CipherTest {
         byte[] plainText =
                 new byte[cipher.getOutputSize(output.length)];
 
-        int decryptedLen = cipher.update(output, 0, output.length, plainText,0);
-        decryptedLen += cipher.doFinal(plainText, decryptedLen);
+//        int decryptedLen = cipher.update(output, 0, output.length, plainText,0);
+//        decryptedLen += cipher.doFinal(plainText, decryptedLen);
+
+        cipher.doFinal(output, 0, output.length, plainText, 0);
 
         System.out.println
                 ("plaintext :" + Utils.toHexString(plainText));
 
     }
 }
-

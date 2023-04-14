@@ -5,8 +5,12 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.security.Security;
 
-public class DoFinal {
-    public static void main(String[] args)throws Exception {
+
+public class CipherTest {
+
+    public static void main(String args[]) throws Exception
+    {
+
         Security.addProvider(new BouncyCastleProvider());
 
         byte[]        input = new byte[] {
@@ -28,25 +32,33 @@ public class DoFinal {
 
         Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding", "BC");
 
+        //AES Initial Vector assign
         IvParameterSpec iv = new IvParameterSpec(ivBytes);
 
-
+        //Plain text input
         System.out.println("input : " + Utils.toHexString(input));
+
+        System.out.println("encrypt start");
 
         cipher.init(Cipher.ENCRYPT_MODE, key, iv);
 
         byte[] output = new byte[cipher.getOutputSize(input.length)];
         int processLen;
 
-//        processLen = cipher.update(input, 0, input.length, output, 0);
+        processLen = cipher.update(input, 0, input.length, output, 0);
 
-//        processLen = cipher.doFinal(output, processLen);
+        System.out.println("update : " + Utils.toHexStringC(output));
 
-        //doFinal만으로 하는법
-        processLen = cipher.doFinal(input,0,input.length,output,0);
+        processLen = cipher.doFinal(output, processLen);
+
+        System.out.println("doFinal : " + Utils.toHexStringC(output));
+
 
         System.out.println("output : " + Utils.toHexString(output));
 
+        System.out.println("encrypt end");
+
+        System.out.println("decrypt start");
 
         cipher.init(Cipher.DECRYPT_MODE, key, iv);
 
@@ -56,8 +68,12 @@ public class DoFinal {
         int decryptedLen = cipher.update(output, 0, output.length, plainText,0);
         decryptedLen += cipher.doFinal(plainText, decryptedLen);
 
-        System.out.println
-                ("plaintext :" + Utils.toHexString(plainText));
+        System.out.println("decrypt fin");
+        System.out.println("original len  : " + input.length);
+        System.out.println("plaintext len : " + plainText.length);
+        System.out.println("original  : " + Utils.toHexString(input));
+        System.out.println("plaintext : " + Utils.toHexString(plainText));
 
     }
 }
+
